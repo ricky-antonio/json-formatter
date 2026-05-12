@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import type { ParsedData } from '@/lib/types'
 import { prettyPrint, toCSV } from '@/lib/format'
 
-export type ViewMode = 'input' | 'pretty' | 'table'
+export type ViewMode = 'input' | 'pretty' | 'table' | 'tree'
 
 interface ToolbarProps {
   mode: ViewMode
@@ -55,6 +55,9 @@ export default function Toolbar({
           <TabsTrigger value="pretty">Pretty</TabsTrigger>
           <TabsTrigger value="table" disabled={tableDisabled}>
             Table
+          </TabsTrigger>
+          <TabsTrigger value="tree" disabled={!parsedData}>
+            Tree
           </TabsTrigger>
         </TabsList>
       </Tabs>

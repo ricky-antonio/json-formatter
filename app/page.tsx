@@ -5,6 +5,7 @@ import Toolbar, { type ViewMode } from '@/components/Toolbar'
 import InputPanel from '@/components/InputPanel'
 import PrettyPanel from '@/components/PrettyPanel'
 import TablePanel from '@/components/TablePanel'
+import TreePanel from '@/components/TreePanel'
 import ErrorBanner from '@/components/ErrorBanner'
 import { parse } from '@/lib/parse'
 import type { ParsedData } from '@/lib/types'
@@ -60,6 +61,7 @@ export default function Home() {
           {mode === 'table' && parsedData && !parsedData.tableDisabled && (
             <TablePanel data={parsedData} />
           )}
+          {mode === 'tree' && parsedData && <TreePanel data={parsedData} />}
         </div>
       </div>
     </main>
