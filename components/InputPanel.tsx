@@ -34,19 +34,19 @@ export default function InputPanel({ value, onChange, onFormat }: InputPanelProp
       />
       <div className="flex flex-wrap items-center gap-2">
         <button
-          className="rounded-full border border-indigo-200 bg-indigo-50 px-3.5 py-1 text-xs font-medium text-indigo-700 transition-colors hover:bg-indigo-100 dark:border-indigo-800 dark:bg-indigo-950/50 dark:text-indigo-300 dark:hover:bg-indigo-900/60"
+          className="rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-medium text-blue-700 transition-all hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-300 dark:hover:bg-blue-900/60"
           onClick={() => onChange(JSON_SAMPLE)}
         >
           Sample JSON
         </button>
         <button
-          className="rounded-full border border-violet-200 bg-violet-50 px-3.5 py-1 text-xs font-medium text-violet-700 transition-colors hover:bg-violet-100 dark:border-violet-800 dark:bg-violet-950/50 dark:text-violet-300 dark:hover:bg-violet-900/60"
+          className="rounded-full border border-indigo-200 bg-indigo-50 px-3.5 py-1 text-xs font-medium text-indigo-700 transition-all hover:bg-indigo-100 dark:border-indigo-800 dark:bg-indigo-950/50 dark:text-indigo-300 dark:hover:bg-indigo-900/60"
           onClick={() => onChange(CSV_SAMPLE)}
         >
           Sample CSV
         </button>
         <button
-          className="ml-auto rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 px-6 py-2 text-sm font-semibold text-white shadow-md shadow-indigo-200 transition-all hover:shadow-lg hover:shadow-indigo-300 hover:brightness-110 active:scale-95 dark:shadow-indigo-900/50"
+          className="ml-auto rounded-xl bg-gradient-to-r from-blue-600 to-indigo-500 px-6 py-2 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:shadow-lg hover:shadow-blue-300 hover:brightness-110 active:scale-95 dark:shadow-blue-900/50"
           onClick={onFormat}
         >
           Format →

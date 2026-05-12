@@ -67,7 +67,7 @@ export default function TablePanel({ data }: TablePanelProps) {
           onChange={e => setFilter(e.target.value)}
           className="max-w-xs focus-visible:ring-indigo-400/40"
         />
-        <span className="rounded-full bg-indigo-100 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
+        <span className="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-700 dark:bg-blue-950 dark:text-blue-300">
           {sorted.length} / {data.rows.length} rows
         </span>
       </div>
@@ -91,7 +91,7 @@ export default function TablePanel({ data }: TablePanelProps) {
           </thead>
           <tbody>
             {sorted.map((row, i) => (
-              <tr key={i} className="border-t border-border transition-colors hover:bg-indigo-50/40 dark:hover:bg-indigo-950/20">
+              <tr key={i} className="border-t border-border transition-colors hover:bg-blue-50/40 dark:hover:bg-blue-950/20">
                 {data.columns.map(col => (
                   <td key={col} className={`px-4 py-2.5 font-mono text-xs ${cellClass(row[col])}`}>
                     {cellText(row[col])}

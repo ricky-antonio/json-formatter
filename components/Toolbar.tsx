@@ -16,6 +16,12 @@ interface ToolbarProps {
   onClear: () => void
 }
 
+const activeTab =
+  'data-active:bg-gradient-to-r data-active:from-blue-600 data-active:to-indigo-500 data-active:text-white data-active:border-transparent data-active:shadow-sm dark:data-active:from-blue-500 dark:data-active:to-indigo-400'
+
+const gradientBtn =
+  'border-0 bg-gradient-to-r from-blue-600 to-indigo-500 text-white shadow-sm shadow-blue-200/60 hover:brightness-110 hover:shadow-md hover:shadow-blue-300/50 active:scale-95 dark:shadow-blue-900/40'
+
 export default function Toolbar({
   mode,
   onModeChange,
@@ -50,12 +56,24 @@ export default function Toolbar({
     <div className="flex flex-wrap items-center gap-3 border-b border-border pb-4">
       <Tabs value={mode} onValueChange={v => onModeChange(v as ViewMode)}>
         <TabsList className="h-9 gap-0.5 p-1">
-          <TabsTrigger value="input" className="px-3 text-xs font-medium">Input</TabsTrigger>
-          <TabsTrigger value="pretty" className="px-3 text-xs font-medium">Pretty</TabsTrigger>
-          <TabsTrigger value="table" disabled={tableDisabled} className="px-3 text-xs font-medium">
+          <TabsTrigger value="input" className={`px-3 text-xs font-medium ${activeTab}`}>
+            Input
+          </TabsTrigger>
+          <TabsTrigger value="pretty" className={`px-3 text-xs font-medium ${activeTab}`}>
+            Pretty
+          </TabsTrigger>
+          <TabsTrigger
+            value="table"
+            disabled={tableDisabled}
+            className={`px-3 text-xs font-medium ${activeTab}`}
+          >
             Table
           </TabsTrigger>
-          <TabsTrigger value="tree" disabled={!parsedData} className="px-3 text-xs font-medium">
+          <TabsTrigger
+            value="tree"
+            disabled={!parsedData}
+            className={`px-3 text-xs font-medium ${activeTab}`}
+          >
             Tree
           </TabsTrigger>
         </TabsList>
@@ -63,23 +81,13 @@ export default function Toolbar({
 
       {parsedData && (
         <div className="ml-auto flex items-center gap-2">
-          <span className="rounded-full bg-indigo-100 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
+          <span className="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-700 dark:bg-blue-950 dark:text-blue-300">
             {parsedData.rows.length} row{parsedData.rows.length !== 1 ? 's' : ''}
           </span>
-          <Button
-            size="sm"
-            variant="outline"
-            className="border-indigo-200 text-indigo-700 hover:bg-indigo-50 dark:border-indigo-800 dark:text-indigo-400 dark:hover:bg-indigo-950"
-            onClick={handleCopy}
-          >
+          <Button size="sm" className={gradientBtn} onClick={handleCopy}>
             {copied ? 'Copied ✓' : 'Copy'}
           </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            className="border-violet-200 text-violet-700 hover:bg-violet-50 dark:border-violet-800 dark:text-violet-400 dark:hover:bg-violet-950"
-            onClick={handleDownload}
-          >
+          <Button size="sm" className={gradientBtn} onClick={handleDownload}>
             Download
           </Button>
           <Button
