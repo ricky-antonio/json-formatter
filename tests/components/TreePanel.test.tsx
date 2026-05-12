@@ -15,74 +15,69 @@ describe('TreePanel', () => {
   it('renders object keys at depth 0 (expanded by default)', () => {
     const data = makeData('{"name":"Alice","age":30}')
     render(<TreePanel data={data} />)
-    expect(screen.getByText('name:')).toBeInTheDocument()
-    expect(screen.getByText('age:')).toBeInTheDocument()
+    expect(screen.getByText('name:')).toBeTruthy()
+    expect(screen.getByText('age:')).toBeTruthy()
   })
 
   it('renders string values with quotes', () => {
     const data = makeData('{"name":"Alice"}')
     render(<TreePanel data={data} />)
-    expect(screen.getByText('"Alice"')).toBeInTheDocument()
+    expect(screen.getByText('"Alice"')).toBeTruthy()
   })
 
   it('renders number values', () => {
     const data = makeData('{"age":30}')
     render(<TreePanel data={data} />)
-    expect(screen.getByText('30')).toBeInTheDocument()
+    expect(screen.getByText('30')).toBeTruthy()
   })
 
   it('renders boolean values', () => {
     const data = makeData('{"active":true}')
     render(<TreePanel data={data} />)
-    expect(screen.getByText('true')).toBeInTheDocument()
+    expect(screen.getByText('true')).toBeTruthy()
   })
 
   it('renders null values', () => {
     const data = makeData('{"x":null}')
     render(<TreePanel data={data} />)
-    expect(screen.getByText('null')).toBeInTheDocument()
+    expect(screen.getByText('null')).toBeTruthy()
   })
 
   it('shows array item count', () => {
     const data = makeData('[1,2,3]')
     render(<TreePanel data={data} />)
-    expect(screen.getByText('[3]')).toBeInTheDocument()
+    expect(screen.getByText('[3]')).toBeTruthy()
   })
 
   it('collapses a node on toggle click', async () => {
     const user = userEvent.setup()
     const data = makeData('{"nested":{"a":1,"b":2}}')
     render(<TreePanel data={data} />)
-    // nested object is at depth 1, starts expanded; its children at depth 2 start collapsed
-    // 'nested:' key should be visible (depth 0 expanded)
-    expect(screen.getByText('nested:')).toBeInTheDocument()
-    // collapse the root by clicking its toggle
+    expect(screen.getByText('nested:')).toBeTruthy()
     const collapseBtn = screen.getAllByLabelText('collapse')[0]
     await user.click(collapseBtn)
-    expect(screen.queryByText('nested:')).not.toBeInTheDocument()
+    expect(screen.queryByText('nested:')).toBeNull()
   })
 
   it('expands a collapsed node on toggle click', async () => {
     const user = userEvent.setup()
-    // depth 2 nodes start collapsed — use a deeply nested structure
     const data = makeData('{"a":{"b":{"c":42}}}')
     render(<TreePanel data={data} />)
-    // 'b:' is at depth 1 (visible), 'c:' at depth 2 (collapsed by default)
-    expect(screen.queryByText('c:')).not.toBeInTheDocument()
+    expect(screen.queryByText('c:')).toBeNull()
     const expandBtn = screen.getByLabelText('expand')
     await user.click(expandBtn)
-    expect(screen.getByText('c:')).toBeInTheDocument()
+    expect(screen.getByText('c:')).toBeTruthy()
   })
 
   it('renders empty object as {}', () => {
     const data = makeData('{}')
     render(<TreePanel data={data} />)
-    expect(screen.getByText('{}')).toBeInTheDocument()
+    expect(screen.getByText('{}')).toBeTruthy()
   })
 
   it('renders empty array as []', () => {
     const data = makeData('[]')
     render(<TreePanel data={data} />)
-    expect(screen.getByText('[]')).toBeInTheDocument()
+    expect(screen.getByText('[]')).toBeTruthy()
   })
 })

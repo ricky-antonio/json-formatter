@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Plus_Jakarta_Sans, Geist_Mono } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import './globals.css'
 
-const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
+const jakartaSans = Plus_Jakarta_Sans({
+  variable: '--font-sans',
+  subsets: ['latin'],
+  display: 'swap',
+})
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -16,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${jakartaSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

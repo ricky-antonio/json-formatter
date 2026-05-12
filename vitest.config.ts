@@ -8,8 +8,8 @@ export default defineConfig({
     alias: { '@': path.resolve(__dirname, '.') },
   },
   test: {
-    environment: 'jsdom',
     globals: true,
+    environment: 'jsdom',
     setupFiles: ['./tests/setup.ts'],
     coverage: {
       provider: 'v8',

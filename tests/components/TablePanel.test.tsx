@@ -18,22 +18,22 @@ const data: ParsedData = {
 describe('TablePanel', () => {
   it('renders all column headers', () => {
     render(<TablePanel data={data} />)
-    expect(screen.getByText('name')).toBeInTheDocument()
-    expect(screen.getByText('age')).toBeInTheDocument()
-    expect(screen.getByText('active')).toBeInTheDocument()
-    expect(screen.getByText('score')).toBeInTheDocument()
+    expect(screen.getByText('name')).toBeTruthy()
+    expect(screen.getByText('age')).toBeTruthy()
+    expect(screen.getByText('active')).toBeTruthy()
+    expect(screen.getByText('score')).toBeTruthy()
   })
 
   it('renders all rows', () => {
     render(<TablePanel data={data} />)
-    expect(screen.getByText('Alice')).toBeInTheDocument()
-    expect(screen.getByText('Bob')).toBeInTheDocument()
-    expect(screen.getByText('Carol')).toBeInTheDocument()
+    expect(screen.getByText('Alice')).toBeTruthy()
+    expect(screen.getByText('Bob')).toBeTruthy()
+    expect(screen.getByText('Carol')).toBeTruthy()
   })
 
   it('shows row count badge', () => {
     render(<TablePanel data={data} />)
-    expect(screen.getByText('3 / 3 rows')).toBeInTheDocument()
+    expect(screen.getByText('3 / 3 rows')).toBeTruthy()
   })
 
   it('renders null cells with text "null"', () => {
@@ -70,9 +70,9 @@ describe('TablePanel', () => {
     const user = userEvent.setup()
     render(<TablePanel data={data} />)
     await user.type(screen.getByPlaceholderText('Filter all columns…'), 'alice')
-    expect(screen.getByText('Alice')).toBeInTheDocument()
-    expect(screen.queryByText('Bob')).not.toBeInTheDocument()
-    expect(screen.getByText('1 / 3 rows')).toBeInTheDocument()
+    expect(screen.getByText('Alice')).toBeTruthy()
+    expect(screen.queryByText('Bob')).toBeNull()
+    expect(screen.getByText('1 / 3 rows')).toBeTruthy()
   })
 
   it('sorts ascending on first header click', async () => {

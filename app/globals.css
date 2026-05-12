@@ -123,6 +123,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
     background-image: radial-gradient(oklch(0.86 0.012 248) 1px, transparent 1px);
     background-size: 22px 22px;
   }

@@ -20,7 +20,7 @@ const activeTab =
   'data-active:bg-gradient-to-r data-active:from-blue-600 data-active:to-indigo-500 data-active:text-white data-active:border-transparent data-active:shadow-sm dark:data-active:from-blue-500 dark:data-active:to-indigo-400'
 
 const gradientBtn =
-  'border-0 bg-gradient-to-r from-blue-600 to-indigo-500 text-white shadow-sm shadow-blue-200/60 hover:brightness-110 hover:shadow-md hover:shadow-blue-300/50 active:scale-95 dark:shadow-blue-900/40'
+  'h-auto rounded-xl border-0 bg-gradient-to-r from-blue-600 to-indigo-500 px-5 py-2 text-sm font-semibold text-white shadow-md shadow-blue-200/60 hover:brightness-110 hover:shadow-lg hover:shadow-blue-300/50 active:scale-95 dark:shadow-blue-900/40'
 
 export default function Toolbar({
   mode,
@@ -91,9 +91,8 @@ export default function Toolbar({
             Download
           </Button>
           <Button
-            size="sm"
             variant="ghost"
-            className="text-muted-foreground hover:text-foreground"
+            className="h-auto rounded-xl px-5 py-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
             onClick={onClear}
           >
             Clear
