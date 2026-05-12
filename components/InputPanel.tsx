@@ -24,32 +24,32 @@ interface InputPanelProps {
 
 export default function InputPanel({ value, onChange, onFormat }: InputPanelProps) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-3">
       <textarea
-        className="h-64 w-full resize-none rounded-md border border-input bg-background p-3 font-mono text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+        className="h-72 w-full resize-none rounded-xl border border-border bg-muted/30 p-4 font-mono text-sm leading-relaxed placeholder:text-muted-foreground/60 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400/30 dark:focus:border-indigo-500 dark:focus:ring-indigo-500/20 transition-colors"
         placeholder="Paste JSON or CSV here…"
         value={value}
         onChange={e => onChange(e.target.value)}
         spellCheck={false}
       />
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <button
-          className="rounded-md border border-border px-3 py-1 text-xs text-muted-foreground hover:bg-accent"
+          className="rounded-full border border-indigo-200 bg-indigo-50 px-3.5 py-1 text-xs font-medium text-indigo-700 transition-colors hover:bg-indigo-100 dark:border-indigo-800 dark:bg-indigo-950/50 dark:text-indigo-300 dark:hover:bg-indigo-900/60"
           onClick={() => onChange(JSON_SAMPLE)}
         >
           Sample JSON
         </button>
         <button
-          className="rounded-md border border-border px-3 py-1 text-xs text-muted-foreground hover:bg-accent"
+          className="rounded-full border border-violet-200 bg-violet-50 px-3.5 py-1 text-xs font-medium text-violet-700 transition-colors hover:bg-violet-100 dark:border-violet-800 dark:bg-violet-950/50 dark:text-violet-300 dark:hover:bg-violet-900/60"
           onClick={() => onChange(CSV_SAMPLE)}
         >
           Sample CSV
         </button>
         <button
-          className="ml-auto rounded-md bg-primary px-4 py-1 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+          className="ml-auto rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 px-6 py-2 text-sm font-semibold text-white shadow-md shadow-indigo-200 transition-all hover:shadow-lg hover:shadow-indigo-300 hover:brightness-110 active:scale-95 dark:shadow-indigo-900/50"
           onClick={onFormat}
         >
-          Format
+          Format →
         </button>
       </div>
     </div>

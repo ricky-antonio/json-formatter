@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import type { ParsedData } from '@/lib/types'
 import { prettyPrint, toCSV } from '@/lib/format'
 
@@ -48,15 +47,15 @@ export default function Toolbar({
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-2 border-b border-border pb-3">
+    <div className="flex flex-wrap items-center gap-3 border-b border-border pb-4">
       <Tabs value={mode} onValueChange={v => onModeChange(v as ViewMode)}>
-        <TabsList>
-          <TabsTrigger value="input">Input</TabsTrigger>
-          <TabsTrigger value="pretty">Pretty</TabsTrigger>
-          <TabsTrigger value="table" disabled={tableDisabled}>
+        <TabsList className="h-9 gap-0.5 p-1">
+          <TabsTrigger value="input" className="px-3 text-xs font-medium">Input</TabsTrigger>
+          <TabsTrigger value="pretty" className="px-3 text-xs font-medium">Pretty</TabsTrigger>
+          <TabsTrigger value="table" disabled={tableDisabled} className="px-3 text-xs font-medium">
             Table
           </TabsTrigger>
-          <TabsTrigger value="tree" disabled={!parsedData}>
+          <TabsTrigger value="tree" disabled={!parsedData} className="px-3 text-xs font-medium">
             Tree
           </TabsTrigger>
         </TabsList>
@@ -64,16 +63,31 @@ export default function Toolbar({
 
       {parsedData && (
         <div className="ml-auto flex items-center gap-2">
-          <Badge variant="secondary">
+          <span className="rounded-full bg-indigo-100 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
             {parsedData.rows.length} row{parsedData.rows.length !== 1 ? 's' : ''}
-          </Badge>
-          <Button size="sm" variant="outline" onClick={handleCopy}>
+          </span>
+          <Button
+            size="sm"
+            variant="outline"
+            className="border-indigo-200 text-indigo-700 hover:bg-indigo-50 dark:border-indigo-800 dark:text-indigo-400 dark:hover:bg-indigo-950"
+            onClick={handleCopy}
+          >
             {copied ? 'Copied ✓' : 'Copy'}
           </Button>
-          <Button size="sm" variant="outline" onClick={handleDownload}>
+          <Button
+            size="sm"
+            variant="outline"
+            className="border-violet-200 text-violet-700 hover:bg-violet-50 dark:border-violet-800 dark:text-violet-400 dark:hover:bg-violet-950"
+            onClick={handleDownload}
+          >
             Download
           </Button>
-          <Button size="sm" variant="outline" onClick={onClear}>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="text-muted-foreground hover:text-foreground"
+            onClick={onClear}
+          >
             Clear
           </Button>
         </div>

@@ -65,21 +65,21 @@ export default function TablePanel({ data }: TablePanelProps) {
           placeholder="Filter all columns…"
           value={filter}
           onChange={e => setFilter(e.target.value)}
-          className="max-w-xs"
+          className="max-w-xs focus-visible:ring-indigo-400/40"
         />
-        <Badge variant="secondary">
+        <span className="rounded-full bg-indigo-100 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
           {sorted.length} / {data.rows.length} rows
-        </Badge>
+        </span>
       </div>
 
-      <div className="overflow-auto rounded-md border border-border">
+      <div className="overflow-auto rounded-xl border border-border shadow-inner">
         <table className="w-full text-sm">
-          <thead className="sticky top-0 bg-muted shadow-sm">
+          <thead className="sticky top-0 border-b border-border bg-muted/60 backdrop-blur-sm">
             <tr>
               {data.columns.map(col => (
                 <th
                   key={col}
-                  className="cursor-pointer select-none whitespace-nowrap px-3 py-2 text-left font-medium text-muted-foreground hover:text-foreground"
+                  className="cursor-pointer select-none whitespace-nowrap px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
                   onClick={() => handleSort(col)}
                 >
                   {col}
@@ -91,9 +91,9 @@ export default function TablePanel({ data }: TablePanelProps) {
           </thead>
           <tbody>
             {sorted.map((row, i) => (
-              <tr key={i} className="border-t border-border hover:bg-muted/40">
+              <tr key={i} className="border-t border-border transition-colors hover:bg-indigo-50/40 dark:hover:bg-indigo-950/20">
                 {data.columns.map(col => (
-                  <td key={col} className={`px-3 py-2 font-mono ${cellClass(row[col])}`}>
+                  <td key={col} className={`px-4 py-2.5 font-mono text-xs ${cellClass(row[col])}`}>
                     {cellText(row[col])}
                   </td>
                 ))}

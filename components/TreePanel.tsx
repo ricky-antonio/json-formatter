@@ -95,8 +95,18 @@ export default function TreePanel({ data }: TreePanelProps) {
   const root: unknown = data.format === 'json' ? JSON.parse(data.raw) : data.rows
 
   return (
-    <div className="overflow-auto rounded-md border border-border bg-muted/30 p-4 font-mono text-sm">
-      <TreeNode value={root} depth={0} />
+    <div className="overflow-hidden rounded-xl border border-border shadow-inner">
+      <div className="flex items-center gap-2 border-b border-border bg-muted/40 px-4 py-2">
+        <div className="flex gap-1.5">
+          <span className="size-2.5 rounded-full bg-red-400/70" />
+          <span className="size-2.5 rounded-full bg-amber-400/70" />
+          <span className="size-2.5 rounded-full bg-green-400/70" />
+        </div>
+        <span className="ml-1 text-xs text-muted-foreground">tree explorer</span>
+      </div>
+      <div className="overflow-auto bg-muted/20 p-5 font-mono text-sm leading-relaxed">
+        <TreeNode value={root} depth={0} />
+      </div>
     </div>
   )
 }
