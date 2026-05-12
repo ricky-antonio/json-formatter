@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/ricky/aiprojects/**)",
+      "Bash(npx create-next-app@latest json-formatter --typescript --tailwind --app --no-src-dir --no-git --yes)",
+      "Bash(cp /c/Users/ricky/aiprojects/json-formatter/CLAUDE.md /tmp/CLAUDE.md)",
+      "Bash(rm /c/Users/ricky/aiprojects/json-formatter/CLAUDE.md)"
+    ]
+  }
+}
