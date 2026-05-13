@@ -12,8 +12,8 @@ const jakartaSans = Plus_Jakarta_Sans({
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'JSON / CSV Formatter',
-  description: 'Paste JSON or CSV and get instant pretty-printing and table view.',
+  title: 'Unfold',
+  description: 'Paste JSON or CSV — format, explore, and export in seconds.',
   icons: { icon: '/favicon.svg' },
 }
 

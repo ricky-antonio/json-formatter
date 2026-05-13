@@ -49,11 +49,12 @@ export default function Home() {
           {/* Header */}
           <div className="mb-8 flex items-start justify-between">
             <div>
-              <h1 className="bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-4xl font-bold tracking-tight text-transparent dark:from-blue-400 dark:to-indigo-400">
-                JSON / CSV Formatter
+              <h1 className="text-4xl font-bold tracking-tight">
+                <span className="text-blue-600 dark:text-blue-400">un</span>
+                <span className="text-indigo-500 dark:text-indigo-400">fold</span>
               </h1>
               <p className="mt-2 text-base text-muted-foreground">
-                Paste data — format, explore, and export in seconds.
+                Paste JSON or CSV — format, explore, and export in seconds.
               </p>
             </div>
             <ThemeToggle />

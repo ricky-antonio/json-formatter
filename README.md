@@ -1,4 +1,4 @@
-# JSON / CSV Formatter
+# Unfold
 
 A fast, client-side tool for formatting and exploring JSON and CSV data. Paste or upload a file and get instant pretty-printing, a sortable/filterable table, and an interactive tree explorer.
 
