@@ -1,12 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import type { ParsedData } from '@/lib/types'
 
 interface TreeNodeProps {
   value: unknown
   depth: number
 }
+
+const TreeCtx = createContext<{ version: number; targetExpanded: boolean }>({
+  version: 0,
+  targetExpanded: true,
+})
 
 function getType(value: unknown): 'null' | 'boolean' | 'number' | 'string' | 'array' | 'object' {
   if (value === null) return 'null'
@@ -27,6 +32,12 @@ function PrimitiveValue({ value }: { value: unknown }) {
 
 function TreeNode({ value, depth }: TreeNodeProps) {
   const [expanded, setExpanded] = useState(depth < 2)
+  const { version, targetExpanded } = useContext(TreeCtx)
+
+  useEffect(() => {
+    if (version > 0) setExpanded(targetExpanded)
+  }, [version, targetExpanded])
+
   const type = getType(value)
 
   if (type === 'array') {
@@ -92,21 +103,42 @@ interface TreePanelProps {
 }
 
 export default function TreePanel({ data }: TreePanelProps) {
+  const [version, setVersion] = useState(0)
+  const [targetExpanded, setTargetExpanded] = useState(true)
   const root: unknown = data.format === 'json' ? JSON.parse(data.raw) : data.rows
 
+  function expandAll() { setTargetExpanded(true); setVersion(v => v + 1) }
+  function collapseAll() { setTargetExpanded(false); setVersion(v => v + 1) }
+
   return (
-    <div className="overflow-hidden rounded-xl border border-border shadow-inner">
-      <div className="flex items-center gap-2 border-b border-border bg-muted/40 px-4 py-2">
-        <div className="flex gap-1.5">
-          <span className="size-2.5 rounded-full bg-red-400/70" />
-          <span className="size-2.5 rounded-full bg-amber-400/70" />
-          <span className="size-2.5 rounded-full bg-green-400/70" />
+    <TreeCtx.Provider value={{ version, targetExpanded }}>
+      <div className="overflow-hidden rounded-xl border border-border shadow-inner">
+        <div className="flex items-center gap-2 border-b border-border bg-muted/40 px-4 py-2">
+          <div className="flex gap-1.5">
+            <span className="size-2.5 rounded-full bg-red-400/70" />
+            <span className="size-2.5 rounded-full bg-amber-400/70" />
+            <span className="size-2.5 rounded-full bg-green-400/70" />
+          </div>
+          <span className="ml-1 text-xs text-muted-foreground">tree explorer</span>
+          <div className="ml-auto flex gap-1.5">
+            <button
+              onClick={expandAll}
+              className="rounded-md px-2 py-0.5 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            >
+              expand all
+            </button>
+            <button
+              onClick={collapseAll}
+              className="rounded-md px-2 py-0.5 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            >
+              collapse all
+            </button>
+          </div>
         </div>
-        <span className="ml-1 text-xs text-muted-foreground">tree explorer</span>
+        <div className="overflow-auto bg-muted/20 p-5 font-mono text-sm leading-relaxed">
+          <TreeNode value={root} depth={0} />
+        </div>
       </div>
-      <div className="overflow-auto bg-muted/20 p-5 font-mono text-sm leading-relaxed">
-        <TreeNode value={root} depth={0} />
-      </div>
-    </div>
+    </TreeCtx.Provider>
   )
 }
