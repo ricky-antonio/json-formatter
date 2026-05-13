@@ -55,27 +55,29 @@ export default function InputPanel({ value, onChange, onFormat }: InputPanelProp
         onChange={e => onChange(e.target.value)}
         spellCheck={false}
       />
-      <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="flex gap-2">
+          <button
+            className="flex-1 rounded-full border border-blue-200 bg-blue-50 px-6 py-2 text-sm font-semibold text-blue-700 transition-all hover:bg-blue-100 active:scale-95 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-300 dark:hover:bg-blue-900/60 sm:flex-none"
+            onClick={() => onChange(JSON_SAMPLE)}
+          >
+            Sample JSON
+          </button>
+          <button
+            className="flex-1 rounded-full border border-indigo-200 bg-indigo-50 px-6 py-2 text-sm font-semibold text-indigo-700 transition-all hover:bg-indigo-100 active:scale-95 dark:border-indigo-800 dark:bg-indigo-950/50 dark:text-indigo-300 dark:hover:bg-indigo-900/60 sm:flex-none"
+            onClick={() => onChange(CSV_SAMPLE)}
+          >
+            Sample CSV
+          </button>
+        </div>
         <button
-          className="rounded-full border border-blue-200 bg-blue-50 px-5 py-2 text-sm font-semibold text-blue-700 transition-all hover:bg-blue-100 active:scale-95 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-300 dark:hover:bg-blue-900/60"
-          onClick={() => onChange(JSON_SAMPLE)}
-        >
-          Sample JSON
-        </button>
-        <button
-          className="rounded-full border border-indigo-200 bg-indigo-50 px-5 py-2 text-sm font-semibold text-indigo-700 transition-all hover:bg-indigo-100 active:scale-95 dark:border-indigo-800 dark:bg-indigo-950/50 dark:text-indigo-300 dark:hover:bg-indigo-900/60"
-          onClick={() => onChange(CSV_SAMPLE)}
-        >
-          Sample CSV
-        </button>
-        <button
-          className="rounded-full border border-border px-5 py-2 text-sm font-semibold text-muted-foreground transition-all hover:border-blue-300 hover:text-blue-600 active:scale-95 dark:hover:border-blue-700 dark:hover:text-blue-400"
+          className="rounded-xl border border-border px-6 py-2 text-sm font-semibold text-muted-foreground transition-all hover:border-blue-300 hover:text-blue-600 active:scale-95 dark:hover:border-blue-700 dark:hover:text-blue-400"
           onClick={() => fileInputRef.current?.click()}
         >
           Upload file
         </button>
         <button
-          className="mt-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-500 px-6 py-2 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:shadow-lg hover:shadow-blue-300 hover:brightness-110 active:scale-95 dark:shadow-blue-900/50 sm:ml-auto sm:mt-0"
+          className="rounded-xl bg-gradient-to-r from-blue-600 to-indigo-500 px-6 py-2 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:shadow-lg hover:shadow-blue-300 hover:brightness-110 active:scale-95 dark:shadow-blue-900/50 sm:ml-auto"
           onClick={onFormat}
         >
           Format →
