@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin']
 export const metadata: Metadata = {
   title: 'JSON / CSV Formatter',
   description: 'Paste JSON or CSV and get instant pretty-printing and table view.',
+  icons: { icon: '/favicon.svg' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
